@@ -81,9 +81,13 @@ def forward_unet(x):
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "*"}})
-CORS(app, origins=["http://localhost:8080"])
+# CORS(app, resources={r"/predict": {"origins": "*"}})
+# CORS(app, origins=["http://localhost:8080"])
 
+@app.route('/', methods=['POST'])
+def home():
+    return "Welcomme to "
+    
 @app.route('/predict', methods=['POST'])
 def upload_form():
     if 'nii_file' not in request.files:
